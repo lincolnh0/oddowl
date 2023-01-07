@@ -1,16 +1,24 @@
 <template>
   <div class="listing-wrapper">
-    <div class="dropdowns">
-      <select id="select-market" disabled>
-        <option value="h2h">Money Line</option>
-        <option value="spreads">Spreads</option>
-        <option value="totals">Over/Under</option>
-      </select>
-      <select id="select-country" disabled>
-        <option value="uk">UK</option>
-        <option value="usa">USA</option>
-        <option value="canada">Canada</option>
-      </select>
+    <div class="inputs">
+      <div>
+        <label for="api-key">API Key</label>
+        <input id="api-key" v-model="api_key" size="30" />
+        <span>Quota: {{ quota_remaining }}</span>
+      </div>
+      <div class="dropdowns">
+        <select id="select-market" disabled>
+          <option value="h2h">Money Line</option>
+          <option value="spreads">Spreads</option>
+          <option value="totals">Over/Under</option>
+        </select>
+        <select id="select-country" v-model="locale">
+          <option value="uk">UK</option>
+          <option value="us">USA</option>
+          <option value="eu">Europe</option>
+          <option value="au">Australia</option>
+        </select>
+      </div>
     </div>
     <ul class="sports-tabs">
       <li v-for="(sport, index) in sports" :key="index">
@@ -49,6 +57,8 @@ export default {
       locale: "uk",
       markets: "h2h",
       results: [],
+      api_key: "",
+      quota_remaining: 0,
     };
   },
   async created() {
@@ -56,15 +66,18 @@ export default {
   },
   methods: {
     async getSports() {
+      this.sports = [];
       const whitelisted_groups = [
         "American Football",
         "Baseball",
         "Basketball",
+        "Mixed Martial Arts",
+        "Rugby League",
       ];
       // Get all sports listing.
       const response = await axios.get(base_url + "/sports", {
         params: {
-          apiKey: import.meta.env.VITE_ODDS_API_KEY,
+          apiKey: this.api_key,
         },
       });
       const sports = response.data;
@@ -97,13 +110,14 @@ export default {
                 base_url + "/sports/" + league.key + "/odds/",
                 {
                   params: {
-                    apiKey: import.meta.env.VITE_ODDS_API_KEY,
-                    regions: "uk",
-                    markets: "h2h",
+                    apiKey: this.api_key,
+                    regions: this.locale,
+                    markets: this.markets,
                   },
                 }
               );
               this.results.push(...response.data);
+              this.quota_remaining = response.headers["x-requests-remaining"];
             } catch (err) {
               console.error(err.response);
             }
@@ -112,6 +126,14 @@ export default {
           element.active = false;
         }
       });
+    },
+  },
+  watch: {
+    api_key() {
+      this.getSports();
+    },
+    locale() {
+      this.getSports();
     },
   },
 };
@@ -123,10 +145,33 @@ export default {
   min-width: 70%;
 }
 
+.inputs {
+  display: flex;
+  margin-bottom: 24px;
+  align-items: center;
+  justify-content: space-between;
+
+  div {
+    display: flex;
+    align-items: center;
+  }
+  label {
+    margin-right: 12px;
+  }
+  input {
+    height: 2rem;
+    padding: 1rem 0.5rem;
+    margin-right: 12px;
+
+  }
+  span {
+    height: 2rem;
+  }
+}
+
 .dropdowns {
   display: flex;
   justify-content: flex-end;
-  margin-bottom: 16px;
   select {
     font-size: medium;
     width: 10rem;
@@ -162,7 +207,9 @@ export default {
       }
 
       &.active {
-        background-color: hsla(45, 85%, 66%, 0.2);
+        background-color: hsla(45, 55%, 50%, 1);
+        color: white;
+        font-weight: bolder;
       }
     }
 

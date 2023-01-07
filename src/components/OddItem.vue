@@ -41,8 +41,20 @@
           <label for="round-to">Round to</label>
         </div>
         <div class="stake-row">
-          <input id="total-stake" type="number" min="0" step="0.01" v-model="stake" />
-          <input id="round-to" type="number" min="0" step="0.01" v-model="rounding" />
+          <input
+            id="total-stake"
+            type="number"
+            min="0"
+            step="0.01"
+            v-model="stake"
+          />
+          <input
+            id="round-to"
+            type="number"
+            min="0"
+            step="0.01"
+            v-model="rounding"
+          />
         </div>
         <div class="stake-row">
           <span>{{ away_stake }}</span>
@@ -101,6 +113,9 @@ export default {
     this.bookmakers.forEach((bookmaker) => {
       bookmaker.markets.forEach((market) => {
         if (market.key === this.market) {
+          if (market.outcomes.length > 2) {
+            console.log(bookmaker);
+          }
           market.outcomes.forEach((outcome) => {
             if (outcome.name === this.away_team) {
               this.min_away_odds =

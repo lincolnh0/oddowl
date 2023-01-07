@@ -12,14 +12,14 @@
     </RouterLink>
     <div class="menus">
       <ul class="left">
-        <li><RouterLink to="#">Getting started</RouterLink></li>
+        <li><RouterLink to="/getting-started">Getting started</RouterLink></li>
         <li><RouterLink to="/about">About</RouterLink></li>
-        <li><RouterLink to="#">Premium</RouterLink></li>
+<!--        <li><RouterLink to="#">Premium</RouterLink></li>-->
       </ul>
       <ul class="right">
-        <li><RouterLink to="#">Login</RouterLink></li>
-        <li><RouterLink to="#">Signup</RouterLink></li>
-        <li><RouterLink to="#">My Account</RouterLink></li>
+<!--        <li><RouterLink to="#">Login</RouterLink></li>-->
+<!--        <li><RouterLink to="#">Signup</RouterLink></li>-->
+<!--        <li><RouterLink to="#">My Account</RouterLink></li>-->
       </ul>
     </div>
   </nav>
