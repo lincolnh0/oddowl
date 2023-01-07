@@ -162,7 +162,6 @@ export default {
     height: 2rem;
     padding: 1rem 0.5rem;
     margin-right: 12px;
-
   }
   span {
     height: 2rem;
