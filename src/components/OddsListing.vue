@@ -48,6 +48,7 @@
 import OddItem from "@/components/OddItem.vue";
 import { base_url } from "@/lib/api";
 import axios from "axios";
+
 export default {
   name: "OddsListing",
   components: { OddItem },
