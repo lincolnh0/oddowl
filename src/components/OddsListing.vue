@@ -3,7 +3,7 @@
     <div class="inputs">
       <div>
         <label for="api-key">API Key</label>
-        <input id="api-key" v-model="api_key" size="30" />
+        <input id="api-key" v-model="api_key" size="20" />
         <span>Quota: {{ quota_remaining }}</span>
       </div>
       <div class="dropdowns">
@@ -148,6 +148,7 @@ export default {
 
 .inputs {
   display: flex;
+  flex-direction: column;
   margin-bottom: 24px;
   align-items: center;
   justify-content: space-between;
@@ -155,6 +156,14 @@ export default {
   div {
     display: flex;
     align-items: center;
+
+    &:not(:last-child) {
+      margin-bottom: 2rem;
+
+      @media (min-width: 800px) {
+        margin-bottom: 0;
+      }
+    }
   }
   label {
     margin-right: 12px;
@@ -167,17 +176,25 @@ export default {
   span {
     height: 2rem;
   }
+
+  @media (min-width: 800px) {
+    flex-direction: row;
+  }
 }
 
 .dropdowns {
   display: flex;
-  justify-content: flex-end;
   select {
     font-size: medium;
     width: 10rem;
     height: 2rem;
     padding: 0 0.5rem;
     margin-left: 8px;
+  }
+
+  @media (min-width: 800px) {
+    justify-content: flex-end;
+
   }
 }
 

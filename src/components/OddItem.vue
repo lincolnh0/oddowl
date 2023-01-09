@@ -73,7 +73,7 @@
             v-for="(bookmaker, index) in home_bookmakers"
             :key="index"
           >
-            {{ bookmaker.title }} - {{ bookmaker.price }}
+            {{ bookmaker.price }} - {{ bookmaker.title }}
           </li>
         </ul>
       </div>
@@ -208,8 +208,12 @@ export default {
   justify-content: space-between;
   padding: 24px;
   text-align: center;
-  font-size: large;
   align-items: center;
+  font-size: small;
+
+  @media (min-width: 800px) {
+    font-size: large;
+  }
 }
 
 .odd-item-expanded {
@@ -220,11 +224,11 @@ export default {
   justify-content: space-between;
   align-items: center;
   padding: 0 24px;
+  font-size: small;
 
   .bookmaker-list {
     list-style: none;
-    padding: 16px;
-    text-align: center;
+    padding: 0;
 
     li.max {
       font-weight: bolder;
@@ -235,12 +239,21 @@ export default {
     padding: 24px;
     max-height: 80vh;
   }
+
+  @media (min-width: 800px) {
+    font-size: medium;
+
+    .bookmaker-list {
+      text-align: center;
+    }
+  }
 }
 
 .stats {
   display: flex;
   flex-direction: column;
   align-items: center;
+  max-width: 0;
 
   .heading {
     font-weight: bolder;
@@ -261,7 +274,6 @@ export default {
     input {
       max-width: 20%;
       padding: 8px;
-      font-size: large;
       text-align: center;
     }
 
@@ -278,11 +290,33 @@ export default {
       margin: 12px;
     }
   }
+
+  @media (min-width: 800px) {
+    max-width: 100%;
+    input {
+      font-size: large;
+    }
+  }
 }
 
-.away-team,
+.away-odds {
+  .bookmaker-list {
+    text-align: left;
+  }
+}
+
+.home-odds {
+  .bookmaker-list {
+    text-align: right;
+  }
+}
+
 .center,
-.home-team {
+.home-team,
+.away-team,
+.home-odds,
+.away-odds,
+.stats {
   flex: 1;
 }
 
