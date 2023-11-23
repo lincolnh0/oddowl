@@ -1,25 +1,13 @@
 # OddOwl
 
-This template should help get you started developing with Vue 3 in Vite.
+With multiple sports back in full swing after Christmas, the sports betting and gambling industry will continue to make profits off die-hard sports fans and adrenaline junkies.
 
-## Recommended IDE Setup
+With events such as the SuperBowl and March Madness coming up, I dove head first into the world of sports betting and was overwhelmed by the amount of bookmakers promotions, betting strategies and just pure chaotic information out there.
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+OddOwl is therefore created to filter out all the bloat and deliver the essentials of what you are really after, the best odds of any given match.
 
-## Type Support for `.vue` Imports in TS
+Using the [Odds API](https://the-odds-api.com/), OddOwl aggregates your region's bookmakers and identify the best odds. In some rare cases, there is also this strategy called Arbitrage betting, where regardless of the outcome of the match, a profit can be made through a careful split of stake.
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
-
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
-
-1. Disable the built-in TypeScript Extension
-    1) Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-    2) Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
 
 ## Project Setup
 
