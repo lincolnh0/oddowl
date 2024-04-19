@@ -1,5 +1,5 @@
 <template>
-  <div class="odd-item-wrapper" v-bind:class="{ arbitrage: is_arbitrage }">
+  <div class="odd-item-wrapper" v-bind:class="{ arbitrage: is_arbitrage, hidden:!is_arbitrage }">
     <div class="odd-item-main" @click.prevent="expanded = !expanded">
       <div class="away-team">
         <p class="team-name">{{ away_team }}</p>
@@ -198,6 +198,10 @@ export default {
 
   &.arbitrage {
     background-color: hsla(120, 93%, 79%, 1);
+  }
+
+  &.hidden {
+    display: none;
   }
 }
 
